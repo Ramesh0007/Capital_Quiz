@@ -1,0 +1,17 @@
+{% extends 'main.html' %} 
+{% block content %}
+    <div class="card-header">
+        <h1>Guess the Capital Game</h1>
+    </div>
+    <div class="card-body">
+        <p>Dear Sam, Guess the capital of {{ random_country.name }}:</p>
+        <form method="post" action="{% url 'guess_capital_result' %}" class="d-flex justify-content-center align-tems-center">
+            {% csrf_token %}
+            
+            <input type="hidden" name="country" value="{{ random_country.name }}">
+            <input type="text" name="user_guess" class="form-control w-50" placeholder="Type the capital...">
+            <button type="submit" class="btn btn-primary ms-3">Check</button>
+        </form>
+        <p>{{ message }}</p>
+    </div>
+{% endblock %}
